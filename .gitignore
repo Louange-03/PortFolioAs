@@ -1,0 +1,62 @@
+node_modules/
+dist/
+build/
+
+# Python
+_pycache_/
+*.pyc
+venv/
+
+# Assets/binaries
+*.mp4
+*.mov
+*.zip
+*.tar
+*.exe
+
+# IDEs
+.vscode/
+.idea/# ---- added by clean script ----
+node_modules/
+**/node_modules/
+.next/
+dist/
+build/
+__pycache__/
+*.pyc
+venv/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.env
+*.env.*.local
+# --------------------------------
+# ---- added by clean script ----
+node_modules/
+**/node_modules/
+.next/
+dist/
+build/
+__pycache__/
+*.pyc
+venv/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.env
+*.env.*.local
+# --------------------------------
+
+node_modules/
+**/node_modules/
+.next/
+dist/
+build/
+
+node_modules/
+**/node_modules/
+.next/
+dist/
+build/
