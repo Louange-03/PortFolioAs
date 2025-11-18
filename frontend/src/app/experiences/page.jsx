@@ -18,6 +18,9 @@ function Chevron({ open }) {
   );
 }
 
+function IconMenu(props){return(<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/></svg>)}
+function IconClose(props){return(<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/></svg>)}
+
 const EXPERIENCES = [
   {
     role: "Développeur Front",
@@ -94,6 +97,7 @@ const EXPERIENCES = [
 export default function Experiences() {
   const [openIndex, setOpenIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
@@ -104,37 +108,78 @@ export default function Experiences() {
 
   return (
     <div className="min-h-screen bg-[#0f1720] text-white relative overflow-hidden flex flex-col">
-      {/* Arrière-plan avec les mêmes halos bleus */}
-      <div className="pointer-events-none absolute -left-40 -top-40 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl animate-pulse-slow" />
-      <div className="pointer-events-none absolute left-1/3 top-1/4 h-80 w-80 rounded-full bg-sky-400/10 blur-3xl animate-pulse-medium" />
-      <div className="pointer-events-none absolute right-[-120px] bottom-[-120px] h-96 w-96 rounded-full bg-sky-700/10 blur-3xl animate-pulse-slow" />
+      {/* Arrière-plan animé IDENTIQUE */}
+      <div className="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl animate-pulse-slow" />
+      <div className="absolute left-1/3 top-1/4 h-80 w-80 rounded-full bg-sky-400/10 blur-3xl animate-pulse-medium" />
+      <div className="absolute right-[-120px] bottom-[-120px] h-96 w-96 rounded-full bg-sky-700/10 blur-3xl animate-pulse-slow" />
+      
+      {/* Grille subtile animée IDENTIQUE */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
 
-      {/* Header */}
-      <header className="w-full bg-[#0b0f16]/95 backdrop-blur border-b border-white/10 z-20">
+      {/* NAVBAR - IDENTIQUE avec menu fonctionnel */}
+      <header className="w-full bg-[#0b0f16]/95 backdrop-blur border-b border-white/10 z-50 sticky top-0">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-300">
+          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="h-7 w-7 rounded-full bg-white flex items-center justify-center">
               <span className="text-[#0b0f16] font-black text-sm">✦</span>
             </div>
-            <span className="font-semibold text-white text-sm sm:text-base">PortFolio</span>
+            <span className="font-semibold text-sm sm:text-base">PortFolio</span>
           </Link>
 
+          {/* Navigation desktop */}
           <nav className="hidden sm:flex items-center gap-4 lg:gap-6 text-sm">
-            <Link className="hover:text-white/80 transition-colors px-2 py-1 rounded" href="/">Accueil</Link>
-            <Link className="hover:text-white/80 transition-colors px-2 py-1 rounded" href="/competences">Compétences</Link>
+            <Link className="hover:text-white/80 px-2 py-1 rounded transition-colors" href="/">Accueil</Link>
+            <Link className="hover:text-white/80 px-2 py-1 rounded transition-colors" href="/competences">Compétences</Link>
             <Link className="text-sky-400 px-2 py-1 rounded" href="/experiences">Expériences</Link>
-            <Link className="hover:text-white/80 transition-colors px-2 py-1 rounded" href="/certifications">Certifications</Link>
+            <Link className="hover:text-white/80 px-2 py-1 rounded transition-colors" href="/certifications">Certifications</Link>
           </nav>
 
-          {/* Menu mobile hamburger */}
+          {/* Menu mobile hamburger FONCTIONNEL */}
           <div className="sm:hidden">
-            <button className="p-2 text-white/80">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+            <button 
+              className="p-2 hover:bg-white/10 rounded transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <IconClose /> : <IconMenu />}
             </button>
           </div>
         </div>
+
+        {/* Menu mobile - OUVRE ET FERME CORRECTEMENT */}
+        {isMenuOpen && (
+          <div className="sm:hidden bg-[#0b0f16] border-t border-white/10 py-4 px-4">
+            <nav className="flex flex-col space-y-4">
+              <Link 
+                className="hover:text-white/80 py-2 px-3 rounded-lg transition-colors hover:bg-white/5" 
+                href="/"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Accueil
+              </Link>
+              <Link 
+                className="hover:text-white/80 py-2 px-3 rounded-lg transition-colors hover:bg-white/5" 
+                href="/competences"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Compétences
+              </Link>
+              <Link 
+                className="text-sky-400 py-2 px-3 rounded-lg bg-white/5" 
+                href="/experiences"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Expériences
+              </Link>
+              <Link 
+                className="hover:text-white/80 py-2 px-3 rounded-lg transition-colors hover:bg-white/5" 
+                href="/certifications"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Certifications
+              </Link>
+            </nav>
+          </div>
+        )}
       </header>
 
       <main className="mx-auto w-full max-w-4xl px-4 sm:px-6 py-8 sm:py-14 flex-1">
@@ -142,15 +187,14 @@ export default function Experiences() {
         <div className={`text-center mb-8 sm:mb-12 transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 sm:mb-4">
-            Mon <span className="text-sky-400">Parcours</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 sm:mb-4 animate-slide-up">
+            Mes <span className="text-sky-400 animate-gradient bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Expériences</span>
           </h1>
-          <p className="text-lg sm:text-xl text-white/70 mb-4 sm:mb-6 max-w-2xl mx-auto px-2">
+          <p className="text-lg sm:text-xl text-white/70 mb-4 sm:mb-6 max-w-2xl mx-auto px-2 animate-slide-up-delayed">
             Découvrez mon évolution à travers des projets concrets qui ont façonné 
             ma passion pour le développement web.
           </p>
-          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-sky-400 to-blue-500 mx-auto rounded-full mb-1 sm:mb-2"></div>
-          <div className="w-12 sm:w-16 h-1 bg-sky-400/50 mx-auto rounded-full"></div>
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-sky-400 to-blue-500 mx-auto rounded-full animate-slide-up-delayed"></div>
         </div>
 
         <div className="space-y-4 sm:space-y-6">
@@ -159,7 +203,7 @@ export default function Experiences() {
             return (
               <article
                 key={`${exp.company}-${i}`}
-                className={`rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 shadow-xl backdrop-blur transform transition-all duration-500 hover:scale-[1.02] hover:border-sky-500/30 ${
+                className={`bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl shadow-xl backdrop-blur transform transition-all duration-500 hover:scale-[1.02] hover:border-sky-500/30 ${
                   isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'
                 }`}
                 style={{ animationDelay: `${i * 100}ms` }}
@@ -204,7 +248,7 @@ export default function Experiences() {
                     {exp.technologies.map((tech, index) => (
                       <span 
                         key={tech}
-                        className="px-2 sm:px-3 py-1 rounded-full text-xs bg-white/10 text-white/70 border border-white/10 hover:bg-sky-500/20 hover:border-sky-400/30 hover:text-sky-300 transition-all duration-300"
+                        className="px-2 sm:px-3 py-1 rounded-full text-xs bg-white/10 text-white/70 border border-white/10 hover:bg-sky-500/20 hover:border-sky-400/30 hover:text-sky-300 transition-all duration-300 hover:scale-105"
                       >
                         {tech}
                       </span>
@@ -215,7 +259,7 @@ export default function Experiences() {
                   <button
                     type="button"
                     onClick={() => toggle(i)}
-                    className="w-full flex items-center justify-between rounded-lg bg-gradient-to-r from-sky-500/10 to-blue-500/10 hover:from-sky-500/20 hover:to-blue-500/20 transition-all duration-300 px-3 sm:px-4 py-2 sm:py-3 text-left group border border-sky-500/20 text-sm"
+                    className="w-full flex items-center justify-between rounded-lg bg-gradient-to-r from-sky-500/10 to-blue-500/10 hover:from-sky-500/20 hover:to-blue-500/20 transition-all duration-300 px-3 sm:px-4 py-2 sm:py-3 text-left group border border-sky-500/20 text-sm hover:scale-105"
                     aria-expanded={open}
                   >
                     <span className="font-medium text-white/85 group-hover:text-white flex items-center gap-2">
@@ -288,7 +332,7 @@ export default function Experiences() {
         </div>
       </main>
 
-      {/* Footer */}
+      {/* FOOTER - IDENTIQUE */}
       <footer className="mt-auto w-full bg-[#0b0f16] border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 h-14 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 text-sm text-white/80 py-2 sm:py-0">
           <div className="flex items-center gap-3 sm:gap-6 flex-wrap justify-center">
@@ -303,8 +347,25 @@ export default function Experiences() {
         </div>
       </footer>
 
-      {/* Styles d'animation */}
+      {/* Styles d'animation COMPLETS identiques */}
       <style jsx global>{`
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
         @keyframes fadeInUp {
           from {
             opacity: 0;
@@ -337,6 +398,20 @@ export default function Experiences() {
           50% { opacity: 0.6; }
         }
 
+        .animate-slide-up {
+          animation: slideUp 0.8s ease-out forwards;
+        }
+
+        .animate-slide-up-delayed {
+          animation: slideUp 0.8s ease-out 0.3s forwards;
+          opacity: 0;
+        }
+
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradientShift 3s ease infinite;
+        }
+
         .animate-fade-in-up {
           animation: fadeInUp 0.6s ease-out forwards;
           opacity: 0;
@@ -347,11 +422,11 @@ export default function Experiences() {
         }
 
         .animate-pulse-slow {
-          animation: pulseSlow 3s ease-in-out infinite;
+          animation: pulseSlow 4s ease-in-out infinite;
         }
 
         .animate-pulse-medium {
-          animation: pulseMedium 2.5s ease-in-out infinite;
+          animation: pulseMedium 3s ease-in-out infinite;
         }
       `}</style>
     </div>
