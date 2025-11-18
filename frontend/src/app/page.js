@@ -9,6 +9,8 @@ function IconMail(props){return(<svg viewBox="0 0 24 24" width="20" height="20" 
 function IconPhone(props){return(<svg viewBox="0 0 24 24" width="20" height="20" fill="none" {...props}><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72 12.66 12.66 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.37a2 2 0 0 1 2.11-.45 12.66 12.66 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>)}
 function IconLinkedIn(props){return(<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" {...props}><path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.06c.63-1.2 2.17-2.46 4.47-2.46 4.78 0 5.66 3.14 5.66 7.22V24h-5V16.2c0-1.86-.03-4.25-2.6-4.25-2.6 0-3 2.03-3 4.12V24h-5z"/></svg>)}
 function IconGitHub(props){return(<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" {...props}><path d="M12 .5A12 12 0 0 0 0 12.7c0 5.4 3.4 10 8 11.6.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.2-1.2-1.6-1.2-1.6-1-.7 0-.7 0-.7 1.1.1 1.6 1.2 1.6 1.2 1 .1.9 2 .9 2 1.1 2 3.1 1.4 3.8 1.1.1-.8.4-1.4.7-1.8-2.6-.3-5.3-1.4-5.3-6a4.8 4.8 0 0 1 1.3-3.3c-.1-.3-.6-1.6.1-3.3 0 0 1-.3 3.3 1.3a11.4 11.4 0 0 1 6 0C17 5.5 18 5.8 18 5.8c.7 1.7.2 3 .1 3.3a4.8 4.8 0 0 1 1.3 3.3c0 4.6-2.8 5.7-5.4 6 .4.3.8 1 .8 2.2v3.2c0 .3.3.7.9.6 4.6-1.6 8-6.2 8-11.6A12 12 0 0 0 12 .5z"/></svg>)}
+function IconMenu(props){return(<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/></svg>)}
+function IconClose(props){return(<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/></svg>)}
 
 /* ===== VISUELS PRO ===== */
 function ProLaptopSVG({ className }) {
@@ -72,7 +74,7 @@ const INFO = {
   city: "Paris, France",
   email: "assiahlouange@gmail.com",
   phone: "+33 X XX XX XX XX",
-  linkedin: "https://www.linkedin.com/in/esso-mawaki-assiah-7742852a9/Esso Mawaki ASSIAH",
+  linkedin: "https://www.linkedin.com/in/esso-mawaki-assiah-7742852a9/",
   github: "https://github.com/Louange-03",
   stats: [
     { number: "3+", label: "Années d'Expérience" },
@@ -86,6 +88,7 @@ export default function Home() {
   const [laptopVisible, setLaptopVisible] = useState(false);
   const [headphonesVisible, setHeadphonesVisible] = useState(false);
   const [titleVisible, setTitleVisible] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => { 
     const t = setTimeout(() => setShow(true), 100);
@@ -113,8 +116,8 @@ export default function Home() {
       {/* Grille subtile animée */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
 
-      {/* NAVBAR - Version responsive */}
-      <header className="w-full bg-[#0b0f16]/95 backdrop-blur border-b border-white/10 z-50">
+      {/* NAVBAR - Version responsive avec menu fonctionnel */}
+      <header className="w-full bg-[#0b0f16]/95 backdrop-blur border-b border-white/10 z-50 sticky top-0">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="h-7 w-7 rounded-full bg-white flex items-center justify-center">
@@ -131,15 +134,52 @@ export default function Home() {
             <Link className="hover:text-white/80 px-2 py-1 rounded transition-colors" href="/certifications">Certifications</Link>
           </nav>
 
-          {/* Menu mobile hamburger */}
+          {/* Menu mobile hamburger FONCTIONNEL */}
           <div className="sm:hidden">
-            <button className="p-2">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+            <button 
+              className="p-2 hover:bg-white/10 rounded transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <IconClose /> : <IconMenu />}
             </button>
           </div>
         </div>
+
+        {/* Menu mobile - OUVRE ET FERME CORRECTEMENT */}
+        {isMenuOpen && (
+          <div className="sm:hidden bg-[#0b0f16] border-t border-white/10 py-4 px-4">
+            <nav className="flex flex-col space-y-4">
+              <Link 
+                className="text-sky-400 py-2 px-3 rounded-lg bg-white/5" 
+                href="/"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Accueil
+              </Link>
+              <Link 
+                className="hover:text-white/80 py-2 px-3 rounded-lg transition-colors hover:bg-white/5" 
+                href="/competences"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Compétences
+              </Link>
+              <Link 
+                className="hover:text-white/80 py-2 px-3 rounded-lg transition-colors hover:bg-white/5" 
+                href="/experiences"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Expériences
+              </Link>
+              <Link 
+                className="hover:text-white/80 py-2 px-3 rounded-lg transition-colors hover:bg-white/5" 
+                href="/certifications"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Certifications
+              </Link>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* HERO SECTION - Version responsive */}
@@ -179,8 +219,8 @@ export default function Home() {
                   e.target.nextSibling.style.display = 'flex';
                 }}
               />
-              <div className="hidden w-full h-full items-center justify-center text-white/60">
-                <span className="text-lg font-semibold">Photo</span>
+              <div className="hidden w-full h-full bg-gradient-to-br from-sky-600 to-blue-700 items-center justify-center text-white">
+                <span className="text-lg font-semibold">EA</span>
               </div>
               <div className="absolute -right-1 -bottom-1 sm:-right-2 sm:-bottom-2 bg-gradient-to-r from-sky-600 to-sky-500 text-white text-xs font-medium px-2 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg animate-pulse">
                 Full-Stack
@@ -274,13 +314,13 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2">
                   <Link 
                     href="/projets" 
-                    className="flex-1 bg-sky-700 hover:bg-sky-600 text-white py-2 px-4 rounded-lg text-center transition-all hover:scale-105 text-sm"
+                    className="flex-1 bg-sky-700 hover:bg-sky-600 text-white py-2 px-4 rounded-lg text-center transition-all hover:scale-105 text-sm font-medium"
                   >
                     Voir mes Projets
                   </Link>
                   <Link 
                     href="/contact" 
-                    className="flex-1 border border-white/20 hover:bg-white/10 py-2 px-4 rounded-lg text-center transition-all hover:scale-105 text-sm"
+                    className="flex-1 border border-white/20 hover:bg-white/10 py-2 px-4 rounded-lg text-center transition-all hover:scale-105 text-sm font-medium"
                   >
                     Me Contacter
                   </Link>
@@ -300,7 +340,7 @@ export default function Home() {
                     }}
                   />
                   {/* Fallback stylisé */}
-                  <div className="hidden w-full h-full bg-gradient-to-br from-sky-900 to-sky-700 rounded-xl flex items-center justify-center text-white/60">
+                  <div className="hidden w-full h-full bg-gradient-to-br from-sky-900 to-sky-700 rounded-xl flex items-center justify-center text-white">
                     <div className="text-center p-4">
                       <div className="text-3xl mb-2">👨‍💻</div>
                       <div className="font-semibold">{INFO.name.split(' ')[0]}</div>
@@ -319,7 +359,7 @@ export default function Home() {
         </section>
       </main>
 
-      {/* FOOTER - Version responsive */}
+      {/* FOOTER - Version responsive avec liens FONCTIONNELS */}
       <footer className="mt-auto w-full bg-[#0b0f16] border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 h-14 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 text-sm text-white/80 py-2 sm:py-0">
           <div className="flex items-center gap-3 sm:gap-6 flex-wrap justify-center">
@@ -411,29 +451,6 @@ export default function Home() {
           opacity: 0;
           animation: staggerAppear 0.6s ease-out forwards;
         }
-
-        /* Flottements améliorés */
-        @keyframes floatSlow { 
-          0% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-15px) rotate(1deg); }
-          100% { transform: translateY(0px) rotate(0deg); }
-        }
-
-        @keyframes floatMid { 
-          0% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-10px) rotate(-1deg); }
-          100% { transform: translateY(0px) rotate(0deg); }
-        }
-
-        @keyframes floatFast { 
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-12px); }
-          100% { transform: translateY(0px); }
-        }
-
-        .animate-float-slow { animation: floatSlow 8s ease-in-out infinite; }
-        .animate-float-mid { animation: floatMid 7s ease-in-out infinite; }
-        .animate-float-fast { animation: floatFast 6s ease-in-out infinite; }
       `}</style>
     </div>
   );

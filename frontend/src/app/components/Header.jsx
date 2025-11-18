@@ -1,5 +1,5 @@
-// Créer un composant Header responsive
-'use client';
+"use client"; // Important pour les interactions
+
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -7,86 +7,69 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="w-full bg-[#0b0f16]/95 backdrop-blur border-b border-white/10 z-50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <div className="h-7 w-7 rounded-full bg-white flex items-center justify-center">
-            <span className="text-[#0b0f16] font-black text-sm">✦</span>
-          </div>
-          <span className="font-semibold text-white">PortFolio</span>
-        </Link>
+    <header className="bg-gray-800 text-white p-4">
+      <div className="container mx-auto flex justify-between items-center">
+        {/* Logo et titre */}
+        <div className="flex items-center">
+          {/* Remplacez par votre logo */}
+          <div className="w-8 h-8 bg-blue-500 rounded mr-2"></div>
+          <h1 className="text-xl font-bold">Portfolio</h1>
+        </div>
 
-        {/* Menu desktop */}
-        <nav className="hidden md:flex items-center gap-6 text-sm">
-          <Link className="text-sky-400 px-2 py-1 rounded transition-colors" href="/">Accueil</Link>
-          <Link className="text-white/80 hover:text-white px-2 py-1 rounded transition-colors" href="/competences">Compétences</Link>
-          <Link className="text-white/80 hover:text-white px-2 py-1 rounded transition-colors" href="/experiences">Expériences</Link>
-          <Link className="text-white/80 hover:text-white px-2 py-1 rounded transition-colors" href="/certifications">Certifications</Link>
+        {/* Menu Desktop - visible sur grands écrans */}
+        <nav className="hidden md:flex space-x-6">
+          <Link href="/" className="hover:text-blue-300 transition">Accueil</Link>
+          <Link href="/competences" className="hover:text-blue-300 transition">Compétences</Link>
+          <Link href="/experiences" className="hover:text-blue-300 transition">Expériences</Link>
+          <Link href="/projets" className="hover:text-blue-300 transition">Projets</Link>
         </nav>
 
-        {/* Menu mobile */}
+        {/* Bouton Menu Mobile - visible sur petits écrans */}
         <button 
-          className="md:hidden p-2 text-white/80 hover:text-white transition-colors"
+          className="md:hidden flex flex-col space-y-1"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-          </svg>
+          <span className="w-6 h-0.5 bg-white"></span>
+          <span className="w-6 h-0.5 bg-white"></span>
+          <span className="w-6 h-0.5 bg-white"></span>
         </button>
       </div>
 
-      {/* Menu mobile dropdown */}
+      {/* Menu Mobile - s'affiche quand on clique */}
       {isMenuOpen && (
-        <div className="md:hidden bg-[#0b0f16] border-t border-white/10 animate-fade-in">
-          <nav className="flex flex-col p-4 space-y-3">
+        <div className="md:hidden mt-4 bg-gray-700 rounded-lg p-4">
+          <nav className="flex flex-col space-y-3">
             <Link 
-              className="text-sky-400 py-3 px-4 rounded-lg bg-sky-500/10 border border-sky-500/20 transition-colors font-medium" 
               href="/" 
+              className="hover:text-blue-300 transition py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Accueil
             </Link>
             <Link 
-              className="text-white/80 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5 transition-colors" 
               href="/competences" 
+              className="hover:text-blue-300 transition py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Compétences
             </Link>
             <Link 
-              className="text-white/80 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5 transition-colors" 
               href="/experiences" 
+              className="hover:text-blue-300 transition py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Expériences
             </Link>
             <Link 
-              className="text-white/80 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5 transition-colors" 
-              href="/certifications" 
+              href="/projets" 
+              className="hover:text-blue-300 transition py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              Certifications
+              Projets
             </Link>
           </nav>
         </div>
       )}
-
-      <style jsx global>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in {
-          animation: fadeIn 0.3s ease-out forwards;
-        }
-      `}</style>
     </header>
   );
 }
