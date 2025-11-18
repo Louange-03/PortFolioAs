@@ -128,75 +128,84 @@ export default function Competences() {
 
       {/* Header */}
       <header className="w-full bg-[#0b0f16]/95 backdrop-blur border-b border-white/10 z-20">
-        <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="h-7 w-7 rounded-full bg-white flex items-center justify-center">
               <span className="text-[#0b0f16] font-black text-sm">✦</span>
             </div>
-            <span className="font-semibold">PortFolio</span>
+            <span className="font-semibold text-white text-sm sm:text-base">PortFolio</span>
           </Link>
 
-          <nav className="flex items-center gap-6 text-sm">
-            <Link className="hover:text-white/80" href="/">Accueil</Link>
-            <Link className="text-sky-400" href="/competences">Compétences</Link>
-            <Link className="hover:text-white/80" href="/experiences">Expériences</Link>
-            <Link className="hover:text-white/80" href="/certifications">Certifications</Link>
+          <nav className="hidden sm:flex items-center gap-4 lg:gap-6 text-sm">
+            <Link className="hover:text-white/80 transition-colors px-2 py-1 rounded" href="/">Accueil</Link>
+            <Link className="text-sky-400 px-2 py-1 rounded" href="/competences">Compétences</Link>
+            <Link className="hover:text-white/80 transition-colors px-2 py-1 rounded" href="/experiences">Expériences</Link>
+            <Link className="hover:text-white/80 transition-colors px-2 py-1 rounded" href="/certifications">Certifications</Link>
           </nav>
+
+          {/* Menu mobile hamburger */}
+          <div className="sm:hidden">
+            <button className="p-2 text-white/80">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-6 py-14 flex-1">
+      <main className="mx-auto w-full max-w-7xl px-4 sm:px-6 py-8 sm:py-14 flex-1">
         {/* Titre principal avec animation */}
-        <div className={`text-center mb-12 transition-all duration-700 ${
+        <div className={`text-center mb-8 sm:mb-12 transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6">
             Mes <span className="text-sky-400">Compétences</span>
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-sky-400 to-blue-500 mx-auto rounded-full mb-6"></div>
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-sky-400 to-blue-500 mx-auto rounded-full mb-4 sm:mb-6"></div>
         </div>
 
         {/* Carte centrale avec animation */}
-        <div className={`mx-auto max-w-4xl transition-all duration-700 ${
+        <div className={`mx-auto w-full max-w-4xl transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           {/* Bandeau d'intro avec animation */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl shadow-xl backdrop-blur mb-8 transform transition-all duration-500 hover:scale-[1.02] hover:border-sky-500/30">
-            <div className="px-6 py-5 md:px-8 md:py-6 border-b border-white/10 rounded-t-2xl">
-              <h2 className="text-lg md:text-xl font-semibold text-white/90 mb-3">{intro.title}</h2>
-              <p className="text-white/70 leading-relaxed">{intro.text}</p>
+          <div className="bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl shadow-xl backdrop-blur mb-6 sm:mb-8 transform transition-all duration-500 hover:scale-[1.02] hover:border-sky-500/30">
+            <div className="px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 border-b border-white/10 rounded-t-xl sm:rounded-t-2xl">
+              <h2 className="text-base sm:text-lg md:text-xl font-semibold text-white/90 mb-2 sm:mb-3">{intro.title}</h2>
+              <p className="text-white/70 leading-relaxed text-sm sm:text-base">{intro.text}</p>
             </div>
           </div>
 
           {/* Grille des compétences */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {groups.map((group, groupIndex) => {
               const IconComponent = group.icon;
               return (
                 <div
                   key={group.heading}
-                  className={`bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm transform transition-all duration-500 hover:scale-105 hover:border-sky-500/30 hover:bg-white/10 ${
+                  className={`bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 backdrop-blur-sm transform transition-all duration-500 hover:scale-105 hover:border-sky-500/30 hover:bg-white/10 ${
                     isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'
                   }`}
                   style={{ animationDelay: `${groupIndex * 100}ms` }}
                 >
                   {/* En-tête de catégorie avec icône */}
-                  <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
+                  <div className="flex items-center gap-3 mb-3 sm:mb-4 pb-3 border-b border-white/10">
                     <div className="p-2 rounded-lg bg-sky-500/10 border border-sky-400/20">
-                      <IconComponent className="w-5 h-5 text-sky-400" />
+                      <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 text-sky-400" />
                     </div>
-                    <h3 className="text-lg font-semibold text-white/90">{group.heading}</h3>
+                    <h3 className="text-base sm:text-lg font-semibold text-white/90">{group.heading}</h3>
                   </div>
 
                   {/* Liste des compétences */}
-                  <ul className="space-y-3">
+                  <ul className="space-y-2 sm:space-y-3">
                     {group.items.map((item, itemIndex) => (
                       <li 
                         key={item} 
-                        className="flex items-start gap-3 text-white/85 transition-all duration-300 hover:text-white hover:translate-x-1"
+                        className="flex items-start gap-2 sm:gap-3 text-white/85 transition-all duration-300 hover:text-white hover:translate-x-1 text-sm"
                       >
                         <Dot delay={itemIndex * 100} />
-                        <span className="text-sm leading-relaxed">{item}</span>
+                        <span className="leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -206,11 +215,11 @@ export default function Competences() {
           </div>
 
           {/* Section supplémentaire avec animation */}
-          <div className={`mt-12 bg-gradient-to-r from-sky-500/10 to-blue-500/10 border border-sky-500/20 rounded-2xl p-8 text-center backdrop-blur transform transition-all duration-700 ${
+          <div className={`mt-8 sm:mt-12 bg-gradient-to-r from-sky-500/10 to-blue-500/10 border border-sky-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center backdrop-blur transform transition-all duration-700 ${
             isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-8'
           }`} style={{animationDelay: '600ms'}}>
-            <h3 className="text-xl font-semibold mb-3 text-white/90">📈 En constante évolution</h3>
-            <p className="text-white/70">
+            <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white/90">📈 En constante évolution</h3>
+            <p className="text-white/70 text-sm sm:text-base">
               Je me forme continuellement aux nouvelles technologies et bonnes pratiques 
               pour rester à la pointe du développement web moderne.
             </p>
@@ -220,14 +229,14 @@ export default function Competences() {
 
       {/* Footer */}
       <footer className="mt-auto w-full bg-[#0b0f16] border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-6 h-14 flex items-center justify-between text-sm text-white/80">
-          <div className="flex items-center gap-6">
-            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <Link href="/competences" className="hover:text-white transition-colors">Compétences</Link>
-            <Link href="/experiences" className="hover:text-white transition-colors">Expériences</Link>
-            <Link href="/certifications" className="hover:text-white transition-colors">Certifications</Link>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 h-14 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 text-sm text-white/80 py-2 sm:py-0">
+          <div className="flex items-center gap-3 sm:gap-6 flex-wrap justify-center">
+            <Link href="/" className="hover:text-white transition-colors text-xs sm:text-sm">Accueil</Link>
+            <Link href="/competences" className="hover:text-white transition-colors text-xs sm:text-sm">Compétences</Link>
+            <Link href="/experiences" className="hover:text-white transition-colors text-xs sm:text-sm">Expériences</Link>
+            <Link href="/certifications" className="hover:text-white transition-colors text-xs sm:text-sm">Certifications</Link>
           </div>
-          <div className="text-white/60">
+          <div className="text-white/60 text-xs sm:text-sm">
             © 2024 Esso M. ASSIAH
           </div>
         </div>
