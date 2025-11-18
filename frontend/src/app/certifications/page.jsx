@@ -193,7 +193,7 @@ export default function Certifications() {
           </h1>
           <p className="text-lg sm:text-xl text-white/70 mb-4 sm:mb-6 max-w-2xl mx-auto px-2 animate-slide-up-delayed">
             Validation de mes compétences techniques à travers des certifications reconnues 
-            dans les domaines de la cybersécurité, des réseaux et des systèmes.
+            dans le domains de la cybersécurité, du réseaux et des systèmes.
           </p>
           <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-sky-400 to-blue-500 mx-auto rounded-full animate-slide-up-delayed"></div>
         </div>
