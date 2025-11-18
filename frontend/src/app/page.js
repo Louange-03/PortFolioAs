@@ -310,19 +310,19 @@ export default function Home() {
                   ))}
                 </div>
 
-                {/* Boutons compacts */}
+                {/* Boutons redirigeant vers les pages existantes */}
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2">
                   <Link 
-                    href="/projets" 
+                    href="/experiences" 
                     className="flex-1 bg-sky-700 hover:bg-sky-600 text-white py-2 px-4 rounded-lg text-center transition-all hover:scale-105 text-sm font-medium"
                   >
-                    Voir mes Projets
+                    Mes Expériences
                   </Link>
                   <Link 
-                    href="/contact" 
+                    href="/competences" 
                     className="flex-1 border border-white/20 hover:bg-white/10 py-2 px-4 rounded-lg text-center transition-all hover:scale-105 text-sm font-medium"
                   >
-                    Me Contacter
+                    Mes Compétences
                   </Link>
                 </div>
               </div>

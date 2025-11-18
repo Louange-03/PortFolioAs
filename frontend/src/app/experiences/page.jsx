@@ -24,11 +24,25 @@ function IconClose(props){return(<svg viewBox="0 0 24 24" width="24" height="24"
 const EXPERIENCES = [
   {
     role: "Développeur Front",
+    company: "Mallow, Paris, Paris",
+    period: "Juillet 2025 à septembre 2025 (2 mois)",
+    location: "Paris, France",
+    type: "Stage Professionnel",
+    details: [
+      "Participation au développement d'une application destinée aux prothésistes",
+      "Mise en place du système de prise de rendez-vous et choix des prestations",
+      "Intégration du module de paiement et des parcours utilisateurs",
+      "Développement front-end en HTML/CSS/JavaScript et React",
+      "Collaboration avec l'équipe design pour améliorer l'expérience utilisateur"
+    ],
+    technologies: ["React", "HTML/CSS", "JavaScript", "UX/UI"]
+  },
+  {
+    role: "Développeur Front",
     company: "HETIC, HACKHETIC en partenariat avec AWS",
     period: "Mai 2025 – Actuel",
     location: "Paris, France",
     type: "Hackathon",
-    icon: "🚀",
     details: [
       "Développement front d'un outil de veille collaborative avec gestion de playlists",
       "Démo et présentation du projet devant un jury professionnel",
@@ -42,7 +56,6 @@ const EXPERIENCES = [
     period: "Avril 2025 – Actuel",
     location: "Paris, France",
     type: "Projet Personnel",
-    icon: "💼",
     details: [
       "Maquettes et prototypes avancés sur Figma",
       "Intégration responsive avec React et bonnes pratiques UX/UI",
@@ -56,7 +69,6 @@ const EXPERIENCES = [
     period: "Mars 2025",
     location: "Paris, France",
     type: "Design UX/UI",
-    icon: "🎨",
     details: [
       "Recherche utilisateur approfondie (interviews, sondages)",
       "Prototypage interactif et tests utilisateurs itératifs",
@@ -70,7 +82,6 @@ const EXPERIENCES = [
     period: "Février 2025",
     location: "Paris, France",
     type: "Projet Jeu",
-    icon: "🎮",
     details: [
       "Développement de fonctionnalités front-end et back-end",
       "Mise en place de composants UI interactifs",
@@ -84,7 +95,6 @@ const EXPERIENCES = [
     period: "Janvier 2025",
     location: "Paris, France",
     type: "Premier Projet",
-    icon: "🌟",
     details: [
       "Développement front-end avec HTML/CSS/JavaScript",
       "Implémentation d'animations et micro-interactions",
@@ -211,11 +221,6 @@ export default function Experiences() {
                 {/* En-tête de la carte */}
                 <header className="p-4 sm:p-6 border-b border-white/10">
                   <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    {/* Icône personnalisée */}
-                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-sky-500/20 to-blue-500/20 border border-sky-400/30 flex items-center justify-center text-base sm:text-lg">
-                      {exp.icon}
-                    </div>
-                    
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
                         <h2 className="text-white/90 font-bold text-base sm:text-lg">{exp.role}</h2>
@@ -293,13 +298,22 @@ export default function Experiences() {
                     {i === 0 && (
                       <div className="mt-3 sm:mt-4 p-2 sm:p-3 rounded-lg bg-sky-500/10 border border-sky-400/20">
                         <p className="text-xs sm:text-sm text-sky-300 flex items-center gap-2">
+                          <span>💼</span>
+                          Première expérience professionnelle en entreprise - Développement d'une application métier complète.
+                        </p>
+                      </div>
+                    )}
+                    
+                    {i === 1 && (
+                      <div className="mt-3 sm:mt-4 p-2 sm:p-3 rounded-lg bg-sky-500/10 border border-sky-400/20">
+                        <p className="text-xs sm:text-sm text-sky-300 flex items-center gap-2">
                           <span>💡</span>
                           Mon premier hackathon ! Une expérience intense qui m'a appris l'importance du travail d'équipe sous pression.
                         </p>
                       </div>
                     )}
                     
-                    {i === 1 && (
+                    {i === 2 && (
                       <div className="mt-3 sm:mt-4 p-2 sm:p-3 rounded-lg bg-blue-500/10 border border-blue-400/20">
                         <p className="text-xs sm:text-sm text-blue-300 flex items-center gap-2">
                           <span>🚧</span>
